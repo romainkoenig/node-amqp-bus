@@ -85,6 +85,7 @@ function* createBusClient(url, options) {
       } catch (err) {
         messageAcknowledgementHandled = true;
         logger.warn({ err, content: contentString, fields: message.fields }, '[node-amqp-bus#consume] Consumer handler failed');
+        console.log('BUS ERROR', err, message);
         return channel.nack(message);
       }
       if (messageAcknowledgementHandled) return undefined;
